@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mobile_navigation"
+        app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.pawtner.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.example.pawtner.ui.chat.ChatFragment"
+        android:label="@string/title_chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/navigation_mypets"
+        android:name="com.example.pawtner.ui.mypets.MyPetsFragment"
+        android:label="@string/title_mypets"
+        tools:layout="@layout/fragment_mypets">
+
+        <!-- Tambahkan action ke AddPetFragment -->
+        <action
+            android:id="@+id/action_mypets_to_addpet"
+            app:destination="@id/navigation_addpet" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_addpet"
+        android:name="com.example.pawtner.ui.mypets.AddPetFragment"
+        android:label="Add Pet"
+        tools:layout="@layout/fragment_addpet" />
+
+
+    <fragment
+        android:id="@+id/navigation_events"
+        android:name="com.example.pawtner.ui.events.EventsFragment"
+        android:label="@string/title_events"
+        tools:layout="@layout/fragment_events" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.pawtner.ui.notifications.NotificationsFragment"
+        android:label="Notifikasi"
+        tools:layout="@layout/fragment_notifications">
+
+        <action
+            android:id="@+id/action_notifications_to_detail"
+            app:destination="@id/notificationsDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notificationsDetailFragment"
+        android:name="com.example.pawtner.ui.notifications.NotificationsDetailFragment"
+        android:label="Detail Notifikasi"
+        tools:layout="@layout/fragment_notificationsdetail" />
+
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.pawtner.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_edit"
+            app:destination="@id/navigation_profile_edit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile_edit"
+        android:name="com.example.pawtner.ui.profile.ProfileEditFragment"
+        android:label="Edit Profile" />
+
+
+</navigation>

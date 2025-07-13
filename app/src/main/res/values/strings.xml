@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Pawtner</string>
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_mypets">My Pets</string>
+    <string name="title_events">Events</string>
+
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="logo_desc">Logo Pawtner</string>
+
+    <string name="terms_text">
+    By clicking this button, you agree with our <font color='#5D9BFF'>Terms and Condition</font>
+    </string>
+
+
+    <string name="full_name">Full Name</string>
+    <string name="gender">Gender</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="national_id">National ID (NIK)</string>
+    <string name="cannot_change">*This field cannot be changed once submitted.</string>
+
+
+
+
+</resources>
+
