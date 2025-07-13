@@ -10,4 +10,10 @@
     <style name="ChipStyle" parent="">
         <item name="cornerSize">12dp</item>
     </style>
+    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

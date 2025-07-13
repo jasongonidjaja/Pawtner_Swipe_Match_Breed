@@ -22,4 +22,6 @@
     <color name="chip_blue">#6D90E9</color>
     <color name="gray_blue">#C2D3E0</color>
     <color name="gray_light">#EFEFEF</color>
+    <color name="blue_primary">#3F51B5</color>
+
 </resources>

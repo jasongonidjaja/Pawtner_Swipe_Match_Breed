@@ -1,20 +1,31 @@
 package com.example.pawtner.model;
 
 public class Chat {
-    private String name;
-    private String message;
+    private String username;
+    private String lastMessage;
     private String time;
     private int unreadCount;
 
-    public Chat(String name, String message, String time, int unreadCount) {
-        this.name = name;
-        this.message = message;
+    public Chat(String username, String lastMessage, String time, int unreadCount) {
+        this.username = username;
+        this.lastMessage = lastMessage;
         this.time = time;
         this.unreadCount = unreadCount;
     }
 
-    public String getName() { return name; }
-    public String getMessage() { return message; }
-    public String getTime() { return time; }
-    public int getUnreadCount() { return unreadCount; }
+    public String getUsername() {
+        return username;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
 }
