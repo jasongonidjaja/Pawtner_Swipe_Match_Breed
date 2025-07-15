@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -36,6 +38,8 @@ public class ChatDetailActivity extends AppCompatActivity {
     private MessageAdapter adapter;
     private EditText messageInput;
     private ImageButton sendButton, cameraButton, attachButton;
+    private LinearLayout attachmentOptions;
+//    private ImageButton attachButton;
 
     private final List<Message> messageList = new ArrayList<>();
 
@@ -96,8 +100,38 @@ public class ChatDetailActivity extends AppCompatActivity {
         cameraButton.setOnClickListener(v -> checkCameraPermission());
 
         // Lampiran (belum diimplementasi)
-        attachButton.setOnClickListener(v ->
-                Toast.makeText(this, "Fitur lampiran belum tersedia", Toast.LENGTH_SHORT).show());
+        attachButton = findViewById(R.id.attach_button);
+        attachmentOptions = findViewById(R.id.attachment_options);
+
+        // Tampilkan/sembunyikan menu attachment
+        attachButton.setOnClickListener(v -> {
+            if (attachmentOptions.getVisibility() == View.GONE) {
+                attachmentOptions.setVisibility(View.VISIBLE);
+            } else {
+                attachmentOptions.setVisibility(View.GONE);
+            }
+        });
+
+        // Aksi klik setiap menu
+        findViewById(R.id.gallery_layout).setOnClickListener(v -> {
+            Toast.makeText(this, "Gallery clicked", Toast.LENGTH_SHORT).show();
+            attachmentOptions.setVisibility(View.GONE);
+        });
+
+        findViewById(R.id.camera_layout).setOnClickListener(v -> {
+            Toast.makeText(this, "Camera clicked", Toast.LENGTH_SHORT).show();
+            attachmentOptions.setVisibility(View.GONE);
+        });
+
+        findViewById(R.id.location_layout).setOnClickListener(v -> {
+            Toast.makeText(this, "Location clicked", Toast.LENGTH_SHORT).show();
+            attachmentOptions.setVisibility(View.GONE);
+        });
+
+        findViewById(R.id.document_layout).setOnClickListener(v -> {
+            Toast.makeText(this, "Document clicked", Toast.LENGTH_SHORT).show();
+            attachmentOptions.setVisibility(View.GONE);
+        });
     }
 
     private void checkCameraPermission() {
