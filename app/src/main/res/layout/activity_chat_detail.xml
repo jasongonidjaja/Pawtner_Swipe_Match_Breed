@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Custom Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:title="Nama Kontak"
         app:titleTextColor="@android:color/white" />
 
+    <!-- Chat messages -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
@@ -23,28 +25,71 @@
         android:padding="8dp"
         android:clipToPadding="false" />
 
+    <!-- Chat input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/blue_primary">
 
-        <EditText
-            android:id="@+id/message_input"
+        <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Ketik pesan..."
-            android:background="@android:color/white"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/message_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Ketik pesan..."
+                android:paddingEnd="80dp"
+                android:paddingStart="16dp"
+                android:background="@drawable/edittext_background"
+                android:textColor="@android:color/black"
+                android:textColorHint="#888888"
+                android:gravity="center_vertical"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="8dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/attach_button"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_attach"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Lampiran"
+                    android:tint="#888888" />
+
+                <ImageButton
+                    android:id="@+id/camera_button"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_camera"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Kamera"
+                    android:tint="#888888" />
+            </LinearLayout>
+        </FrameLayout>
 
         <ImageButton
             android:id="@+id/send_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
             android:src="@android:drawable/ic_menu_send"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Kirim" />
+            android:contentDescription="Kirim"
+            android:tint="@android:color/white" />
     </LinearLayout>
+
+
+
 </LinearLayout>

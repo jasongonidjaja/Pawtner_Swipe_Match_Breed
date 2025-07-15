@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#131639">
+
+    <!-- Header Minimize Button -->
+    <ImageButton
+        android:id="@+id/minimize_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_round_button"
+        android:src="@drawable/ic_minimize"
+        android:contentDescription="Minimize"
+        app:tint="#FFFFFF"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Call Status (Title) -->
+    <TextView
+        android:id="@+id/call_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voice Call"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/minimize_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"/>
+
+    <!-- Call State -->
+
+    <!-- Drop Shadow Separator (Moved Here) -->
+    <TextView
+        android:id="@+id/call_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Ringing..."
+        android:textColor="#CCCCCC"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/call_status" />
+
+    <View
+        android:id="@+id/shadow_separator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shadow_line"
+        app:layout_constraintTop_toBottomOf="@id/call_state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Guideline to center profile image -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- Profile Image (centered) -->
+
+
+    <!-- Username -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_image"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="184dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dog_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shadow_separator"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+    <!-- Bottom Control Buttons -->
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Darianto Anjisari"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+    <LinearLayout
+        android:id="@+id/control_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/video_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_round_button"
+            android:src="@drawable/ic_video"
+            app:tint="#FFFFFF"
+            android:layout_margin="8dp"
+            android:contentDescription="Video" />
+
+        <ImageButton
+            android:id="@+id/speaker_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_round_button"
+            android:src="@drawable/ic_volume"
+            app:tint="#FFFFFF"
+            android:layout_margin="8dp"
+            android:contentDescription="Speaker" />
+
+        <ImageButton
+            android:id="@+id/mic_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_round_button"
+            android:src="@drawable/ic_mic_off"
+            app:tint="#FFFFFF"
+            android:layout_margin="8dp"
+            android:contentDescription="Mic" />
+
+        <ImageButton
+            android:id="@+id/end_call_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_red_round_button"
+            android:src="@drawable/ic_end_call"
+            app:tint="#FFFFFF"
+            android:layout_margin="8dp"
+            android:contentDescription="End Call" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

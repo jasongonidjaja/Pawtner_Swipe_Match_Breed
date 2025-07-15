@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pawtner.R;
+import com.example.pawtner.model.Message;
 
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int VIEW_TYPE_SENT = 1;
     private static final int VIEW_TYPE_RECEIVED = 2;
 
-    private List<String> messageList;
+    private List<Message> messageList;
 
-    public MessageAdapter(List<String> messageList) {
+    public MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;
     }
 
-    public void addMessage(String message) {
+    public void addMessage(Message message) {
         messageList.add(message);
         notifyItemInserted(messageList.size() - 1);
     }
@@ -46,11 +47,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        String message = messageList.get(position);
+        Message message = messageList.get(position);
         if (holder instanceof SentMessageHolder) {
-            ((SentMessageHolder) holder).messageText.setText(message);
+            ((SentMessageHolder) holder).messageText.setText(message.getText());
+            ((SentMessageHolder) holder).messageTime.setText(message.getTime());
         } else {
-            ((ReceivedMessageHolder) holder).messageText.setText(message);
+            ((ReceivedMessageHolder) holder).messageText.setText(message.getText());
+            ((ReceivedMessageHolder) holder).messageTime.setText(message.getTime());
         }
     }
 
@@ -59,19 +62,21 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return messageList.size();
     }
 
-    class SentMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText;
+    static class SentMessageHolder extends RecyclerView.ViewHolder {
+        TextView messageText, messageTime;
         SentMessageHolder(View itemView) {
             super(itemView);
             messageText = itemView.findViewById(R.id.message_text);
+            messageTime = itemView.findViewById(R.id.message_time);
         }
     }
 
-    class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText;
+    static class ReceivedMessageHolder extends RecyclerView.ViewHolder {
+        TextView messageText, messageTime;
         ReceivedMessageHolder(View itemView) {
             super(itemView);
             messageText = itemView.findViewById(R.id.message_text);
+            messageTime = itemView.findViewById(R.id.message_time);
         }
     }
 }
