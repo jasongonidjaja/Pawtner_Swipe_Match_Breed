@@ -1,20 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:padding="8dp"
-    android:background="@android:color/white">
+    android:background="@android:color/transparent">
 
-    <!-- Gambar Profil -->
-    <ImageView
+    <!-- Gambar Profil Bulat -->
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/chat_profile_image"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile" />
+        android:src="@drawable/profile"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
 
-    <!-- Nama -->
+    <!-- Nama Kontak -->
     <TextView
         android:id="@+id/chat_name"
         android:layout_width="wrap_content"
@@ -64,4 +67,13 @@
         android:text="2"
         android:textColor="@android:color/white"
         android:textSize="12sp"/>
+
+    <!-- Garis Pemisah -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#D8D2D2" />
 </RelativeLayout>
