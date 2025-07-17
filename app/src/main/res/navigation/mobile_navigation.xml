@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mobile_navigation"
-        app:startDestination="@+id/navigation_home">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -23,7 +23,6 @@
         android:label="@string/title_mypets"
         tools:layout="@layout/fragment_mypets">
 
-        <!-- Tambahkan action ke AddPetFragment -->
         <action
             android:id="@+id/action_mypets_to_addpet"
             app:destination="@id/navigation_addpet" />
@@ -33,8 +32,13 @@
         android:id="@+id/navigation_addpet"
         android:name="com.example.pawtner.ui.mypets.AddPetFragment"
         android:label="Add Pet"
-        tools:layout="@layout/fragment_addpet" />
+        tools:layout="@layout/fragment_addpet">
 
+        <!-- Tambahkan action kembali ke MyPetsFragment -->
+        <action
+            android:id="@+id/action_addpet_to_mypets"
+            app:destination="@id/navigation_mypets" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_events"
@@ -59,7 +63,6 @@
         android:label="Detail Notifikasi"
         tools:layout="@layout/fragment_notificationsdetail" />
 
-
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.pawtner.ui.profile.ProfileFragment"
@@ -74,6 +77,5 @@
         android:id="@+id/navigation_profile_edit"
         android:name="com.example.pawtner.ui.profile.ProfileEditFragment"
         android:label="Edit Profile" />
-
 
 </navigation>

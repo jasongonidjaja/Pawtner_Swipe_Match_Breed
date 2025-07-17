@@ -69,7 +69,7 @@
                 android:padding="10dp"
                 android:text="Age : 2\nBreed : Golden Retriever\nColor : Black\nGender : Male\nWeight : 20 kg"
                 android:background="@drawable/pet_detail_bg"
-                android:textColor="#444444"
+                android:textColor="@color/darkblue_paw"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

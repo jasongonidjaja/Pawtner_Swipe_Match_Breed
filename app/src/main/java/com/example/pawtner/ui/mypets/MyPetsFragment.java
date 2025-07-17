@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.SearchView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-//import androidx.recyclerview.widget.LinearLayoutManager;
-//import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pawtner.R;
 import com.example.pawtner.adapters.PetAdapter;
@@ -27,7 +25,6 @@ import java.util.List;
 
 public class MyPetsFragment extends Fragment {
 
-//    private RecyclerView rvPets;
     private PetAdapter petAdapter;
     private List<Pet> petList;
     private SearchView searchView;
@@ -44,10 +41,7 @@ public class MyPetsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Cari tombol floating action
         FloatingActionButton floatingBtn = view.findViewById(R.id.floatingBtn);
-
-        // Atur onClick untuk pindah ke fragment_addpet
         floatingBtn.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
             navController.navigate(R.id.action_mypets_to_addpet);
@@ -57,34 +51,57 @@ public class MyPetsFragment extends Fragment {
         btnAll = view.findViewById(R.id.btnAll);
         btnCat = view.findViewById(R.id.btnCat);
         btnDog = view.findViewById(R.id.btnDog);
-//        rvPets = view.findViewById(R.id.rvPets);
 
         btnAll.setSelected(false);
         btnCat.setSelected(false);
         btnDog.setSelected(false);
 
-        // Dummy data sementara
-        petList = new ArrayList<>(); // Harus diganti nanti dengan data asli dari database / API
+        petList = new ArrayList<>(); // Dummy list sementara
 
-        // Paksa SearchView tampil & hint muncul
         searchView.setIconified(false);
         searchView.clearFocus();
 
-        TextView searchText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView searchText = searchView.findViewById(id);
         if (searchText != null) {
             searchText.setHint("Search Pet");
             searchText.setHintTextColor(Color.parseColor("#999999"));
             searchText.setTextColor(Color.parseColor("#1D1B1B"));
         }
 
-        // Setup RecyclerView
-//        rvPets.setLayoutManager(new LinearLayoutManager(requireContext()));
         petAdapter = new PetAdapter(requireContext(), petList, pet -> {
             // klik pet (optional)
         });
-//        rvPets.setAdapter(petAdapter);
 
-        // SearchView filter listener
+        // --- FILTER BUTTON ---
+        List<Button> filterButtons = new ArrayList<>();
+        filterButtons.add(btnAll);
+        filterButtons.add(btnCat);
+        filterButtons.add(btnDog);
+
+        View.OnClickListener filterClickListener = v -> {
+            for (Button btn : filterButtons) {
+                btn.setSelected(false);
+                btn.setTextColor(requireContext().getColor(R.color.maroon)); // Non-aktif = maroon
+            }
+
+            Button clickedBtn = (Button) v;
+            clickedBtn.setSelected(true);
+            clickedBtn.setTextColor(requireContext().getColor(R.color.my_black)); // Aktif = hitam
+
+            String filterType = clickedBtn.getText().toString();
+            petAdapter.filterByType(filterType);
+        };
+
+        btnAll.setOnClickListener(filterClickListener);
+        btnCat.setOnClickListener(filterClickListener);
+        btnDog.setOnClickListener(filterClickListener);
+
+        // Set default selected (All)
+        btnAll.setSelected(true);
+        btnAll.setTextColor(requireContext().getColor(R.color.my_black));
+
+        // --- SEARCH LISTENER ---
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -98,33 +115,5 @@ public class MyPetsFragment extends Fragment {
                 return true;
             }
         });
-
-        // Filter buttons
-        List<Button> filterButtons = new ArrayList<>();
-        filterButtons.add(btnAll);
-        filterButtons.add(btnCat);
-        filterButtons.add(btnDog);
-
-        View.OnClickListener filterClickListener = v -> {
-            for (Button btn : filterButtons) {
-                btn.setSelected(false);
-                btn.setTextColor(requireContext().getColor(R.color.maroon));
-            }
-
-            Button clickedBtn = (Button) v;
-            clickedBtn.setSelected(true);
-            clickedBtn.setTextColor(requireContext().getColor(R.color.my_black));
-
-            String filterType = clickedBtn.getText().toString();
-            petAdapter.filterByType(filterType);
-        };
-
-        btnAll.setOnClickListener(filterClickListener);
-        btnCat.setOnClickListener(filterClickListener);
-        btnDog.setOnClickListener(filterClickListener);
-
-        // Default selected
-        btnAll.setSelected(true);
-        btnAll.setTextColor(requireContext().getColor(R.color.my_black));
     }
 }

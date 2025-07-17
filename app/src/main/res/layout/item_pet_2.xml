@@ -17,15 +17,15 @@
         android:minHeight="120dp"
         android:gravity="center_vertical">
 
-        <!-- Background gambar strip kiri -->
+        <!-- Strip kiri -->
         <ImageView
             android:id="@+id/bgImage"
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/card_item_2"
-            android:contentDescription="Background image"
-            android:background="@drawable/bg_strip_scallop" />
+            android:background="@drawable/bg_strip_scallop"
+            android:contentDescription="Strip Image" />
 
         <!-- Konten kanan -->
         <LinearLayout
@@ -35,7 +35,7 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <!-- Foto profil dan nama -->
+            <!-- Foto profil + nama -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:text="Gon"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textColor="#C68B00" /> <!-- warna teks agak golden/brown -->
+                    android:textColor="#C68B00" />
             </LinearLayout>
 
             <!-- Detail pet -->
@@ -68,10 +68,9 @@
                 android:layout_marginTop="8dp"
                 android:padding="10dp"
                 android:text="Age: 2\nBreed: Golden Retriever\nColor: Black\nGender: Male\nWeight: 20kg"
-                android:background="#FFF4C2"
-                android:textColor="#444444"
+                android:background="@drawable/pet_detail_bg_2"
+                android:textColor="@color/darkblue_paw"
                 android:textSize="14sp" />
-
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
