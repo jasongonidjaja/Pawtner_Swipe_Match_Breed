@@ -71,7 +71,7 @@
                 android:padding="10dp"
                 android:text="Age: 2\nBreed: Bulldog\nColor: Black\nGender: Male\nWeight: 60kg"
                 android:background="@drawable/pet_detail_bg"
-                android:textColor="#444444"
+                android:textColor="@color/darkblue_paw"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
