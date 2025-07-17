@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Background dengan opacity 70% -->
+    <solid android:color="#B3C3D4FF" />
+
+    <!-- Border -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/darkblue_paw" />
+
+    <!-- Rounded corner -->
+    <corners android:radius="32dp" />
+</shape>

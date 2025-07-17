@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.SearchView;
 import androidx.navigation.NavController;
@@ -41,11 +42,30 @@ public class MyPetsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // NavController untuk navigasi antar fragment
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+
+        // Floating Button untuk tambah pet
         FloatingActionButton floatingBtn = view.findViewById(R.id.floatingBtn);
         floatingBtn.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
             navController.navigate(R.id.action_mypets_to_addpet);
         });
+
+        // Tambahkan navigasi dari static card
+        CardView card1 = view.findViewById(R.id.card1);
+        if (card1 != null) {
+            card1.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
+
+        CardView card2 = view.findViewById(R.id.card2);
+        if (card2 != null) {
+            card2.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
+
+        CardView card3 = view.findViewById(R.id.card3);
+        if (card3 != null) {
+            card3.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
 
         searchView = view.findViewById(R.id.searchView);
         btnAll = view.findViewById(R.id.btnAll);
@@ -61,6 +81,7 @@ public class MyPetsFragment extends Fragment {
         searchView.setIconified(false);
         searchView.clearFocus();
 
+        // Konfigurasi tampilan SearchView
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView searchText = searchView.findViewById(id);
         if (searchText != null) {
