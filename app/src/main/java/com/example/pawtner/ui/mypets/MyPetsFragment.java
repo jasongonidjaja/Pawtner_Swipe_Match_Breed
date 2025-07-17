@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.SearchView;
 import androidx.navigation.NavController;
@@ -44,14 +45,30 @@ public class MyPetsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Cari tombol floating action
-        FloatingActionButton floatingBtn = view.findViewById(R.id.floatingBtn);
+        // Navigasi controller
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
 
-        // Atur onClick untuk pindah ke fragment_addpet
+        // Floating Button
+        FloatingActionButton floatingBtn = view.findViewById(R.id.floatingBtn);
         floatingBtn.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
             navController.navigate(R.id.action_mypets_to_addpet);
         });
+
+        // Tambahkan navigasi dari static card
+        CardView card1 = view.findViewById(R.id.card1); // Sesuaikan ID dengan yang ada di item_pet.xml
+        if (card1 != null) {
+            card1.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
+
+        CardView card2 = view.findViewById(R.id.card2); // dari item_pet_2.xml
+        if (card2 != null) {
+            card2.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
+
+        CardView card3 = view.findViewById(R.id.card3); // dari item_pet_3.xml
+        if (card3 != null) {
+            card3.setOnClickListener(v -> navController.navigate(R.id.action_mypets_to_petprofile));
+        }
 
         searchView = view.findViewById(R.id.searchView);
         btnAll = view.findViewById(R.id.btnAll);
@@ -70,12 +87,12 @@ public class MyPetsFragment extends Fragment {
         searchView.setIconified(false);
         searchView.clearFocus();
 
-        TextView searchText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        if (searchText != null) {
-            searchText.setHint("Search Pet");
-            searchText.setHintTextColor(Color.parseColor("#999999"));
-            searchText.setTextColor(Color.parseColor("#1D1B1B"));
-        }
+//        TextView searchText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+//        if (searchText != null) {
+//            searchText.setHint("Search Pet");
+//            searchText.setHintTextColor(Color.parseColor("#999999"));
+//            searchText.setTextColor(Color.parseColor("#1D1B1B"));
+//        }
 
         // Setup RecyclerView
 //        rvPets.setLayoutManager(new LinearLayoutManager(requireContext()));

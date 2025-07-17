@@ -23,10 +23,15 @@
         android:label="@string/title_mypets"
         tools:layout="@layout/fragment_mypets">
 
-        <!-- Tambahkan action ke AddPetFragment -->
+        <!-- AddPet -->
         <action
             android:id="@+id/action_mypets_to_addpet"
             app:destination="@id/navigation_addpet" />
+
+        <!-- PetProfile -->
+        <action
+            android:id="@+id/action_mypets_to_petprofile"
+            app:destination="@id/navigation_petprofile" />
     </fragment>
 
     <fragment
@@ -34,6 +39,68 @@
         android:name="com.example.pawtner.ui.mypets.AddPetFragment"
         android:label="Add Pet"
         tools:layout="@layout/fragment_addpet" />
+
+    <fragment
+        android:id="@+id/navigation_petprofile"
+        android:name="com.example.pawtner.ui.mypets.PetProfileFragment"
+        android:label="Pet Profile"
+        tools:layout="@layout/fragment_petprofile" >
+
+        <!-- EditPost -->
+        <action
+            android:id="@+id/action_petprofile_to_editpost"
+            app:destination="@id/navigation_edit_post" />
+
+        <action
+            android:id="@+id/action_petprofile_to_newpost"
+            app:destination="@id/navigation_new_post" />
+
+    </fragment>
+
+    <!--  Edit Post  -->
+    <fragment
+        android:id="@+id/navigation_edit_post"
+        android:name="com.example.pawtner.ui.mypets.EditPetPostFragment"
+        android:label="Edit Post"
+        tools:layout="@layout/fragment_editpetpost">
+
+        <argument
+            android:name="imageResId"
+            app:argType="integer" />
+
+        <argument
+            android:name="caption"
+            app:argType="string" />
+    </fragment>
+
+    <!--  New Post  -->
+    <fragment
+        android:id="@+id/navigation_new_post"
+        android:name="com.example.pawtner.ui.mypets.NewPostFragment"
+        android:label="New Post"
+        tools:layout="@layout/fragment_newpost">
+
+        <!-- Action to Caption -->
+        <action
+            android:id="@+id/action_newPostFragment_to_captionFragment"
+            app:destination="@id/captionFragment" />
+    </fragment>
+
+
+    <!-- Caption Page -->
+    <fragment
+        android:id="@+id/captionFragment"
+        android:name="com.example.pawtner.ui.mypets.CaptionFragment"
+        android:label="Caption"
+        tools:layout="@layout/fragment_caption">
+
+        <action
+            android:id="@+id/action_captionFragment_to_navigation_petprofile"
+            app:destination="@id/navigation_petprofile"
+            app:popUpTo="@id/navigation_new_post"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
 
     <fragment
