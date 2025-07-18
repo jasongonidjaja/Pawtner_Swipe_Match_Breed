@@ -42,15 +42,18 @@ public class LoginActivity extends AppCompatActivity {
         signUpText.setText(spannable);
 
         // ✅ Validasi Sign In
-            signInButton.setOnClickListener(v -> {
-                String email = emailInput.getText().toString().trim();
-                String password = passwordInput.getText().toString().trim();
+        signInButton.setOnClickListener(v -> {
+            String email = emailInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    errorMessage.setText("Please enter your email and password.");
-                    errorMessage.setVisibility(TextView.VISIBLE);
-                } else {
-                    errorMessage.setVisibility(TextView.GONE);
+            if (email.isEmpty() || password.isEmpty()) {
+                errorMessage.setText("Please enter your email and password.");
+                errorMessage.setVisibility(TextView.VISIBLE);
+            } else if (!email.contains("@")) {
+                errorMessage.setText("Email must contain '@'.");
+                errorMessage.setVisibility(TextView.VISIBLE);
+            } else {
+                errorMessage.setVisibility(TextView.GONE);
 
                     // ✅ Tambahkan data dummy untuk ProfileActivity
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

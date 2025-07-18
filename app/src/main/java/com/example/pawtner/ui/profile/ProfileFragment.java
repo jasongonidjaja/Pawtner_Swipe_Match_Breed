@@ -2,6 +2,8 @@ package com.example.pawtner.ui.profile;
 
 import android.app.Activity;
 import android.content.Intent;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +99,23 @@ public class ProfileFragment extends Fragment {
         view.findViewById(R.id.logoutBtn).setOnClickListener(v -> showLogoutDialog());
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // 🔄 Terima data balik dari ProfileEditFragment
+        getParentFragmentManager().setFragmentResultListener(
+                "editProfileResult", this, (requestKey, bundle) -> {
+                    if (bundle != null) {
+                        nameInput.setText(bundle.getString("name", ""));
+                        phoneInput.setText(bundle.getString("phone", ""));
+                        emailInput.setText(bundle.getString("email", ""));
+                        addressInput.setText(bundle.getString("address", ""));
+                    }
+                }
+        );
     }
 
     private void showLogoutDialog() {

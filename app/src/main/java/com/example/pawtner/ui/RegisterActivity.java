@@ -69,6 +69,18 @@ public class RegisterActivity extends AppCompatActivity {
                     || address.isEmpty() || nik.isEmpty()) {
                 errorMessage.setText("Please complete all fields.");
                 errorMessage.setVisibility(TextView.VISIBLE);
+            } else if (!fullName.matches("[a-zA-Z\\s]+")) {
+                errorMessage.setText("Name must contain only letters.");
+                errorMessage.setVisibility(TextView.VISIBLE);
+            } else if (!email.contains("@")) {
+                errorMessage.setText("Email must contain '@'.");
+                errorMessage.setVisibility(TextView.VISIBLE);
+            } else if (phone.length() < 11 || phone.length() > 12) {
+                errorMessage.setText("Phone must be 11–12 digits.");
+                errorMessage.setVisibility(TextView.VISIBLE);
+            } else if (!nik.matches("\\d{16,}")) {
+                errorMessage.setText("NIK must be at least 16 digits and numeric.");
+                errorMessage.setVisibility(TextView.VISIBLE);
             } else {
                 errorMessage.setVisibility(TextView.GONE);
 
