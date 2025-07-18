@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.pawtner.R;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 
 public class AddPetFragment extends Fragment {
 
@@ -31,10 +34,26 @@ public class AddPetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button btnSubmit = view.findViewById(R.id.btnSubmit);
+        RadioGroup radioGender = view.findViewById(R.id.radioGender);
 
         btnSubmit.setOnClickListener(v -> {
-            // Navigasi kembali ke MyPetsFragment
+            // Ambil gender yang dipilih
+            int selectedId = radioGender.getCheckedRadioButtonId();
+            String gender = "";
+
+            if (selectedId != -1) {
+                RadioButton selectedRadio = view.findViewById(selectedId);
+                gender = selectedRadio.getText().toString(); // Akan "Male" atau "Female"
+            }
+
+            // Contoh: tampilkan log gender
+            // Log.d("AddPetFragment", "Gender: " + gender);
+
+            // TODO: Simpan ke database atau kirim ke ViewModel, dll.
+
+            // Navigasi ke MyPetsFragment
             Navigation.findNavController(view).navigate(R.id.action_addpet_to_mypets);
         });
     }
+
 }
