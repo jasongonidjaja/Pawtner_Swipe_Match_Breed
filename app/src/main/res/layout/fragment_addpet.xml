@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pet Name"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Type of pet"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -62,7 +62,7 @@
                 app:cardElevation="2dp"
                 app:strokeColor="#3B5CB8"
                 app:strokeWidth="2dp"
-                app:cardBackgroundColor="#3B5CB8">
+                app:cardBackgroundColor="#6489E5">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -141,35 +141,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gender"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"/>
         <RadioGroup
+            android:id="@+id/radioGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
 
             <RadioButton
+                android:id="@+id/radioMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"
-                android:checked="true"/>
+                android:buttonTint="#6489E5" />
 
             <RadioButton
+                android:id="@+id/radioFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Female"/>
+                android:text="Female"
+                android:buttonTint="#6489E5"
+                android:layout_marginStart="24dp" />
         </RadioGroup>
+
+
 
         <!-- Color -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Color"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -185,14 +194,14 @@
         <!-- Age -->
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age"
-            android:textColor="#3b5cb8"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif"
+            android:layout_height="18dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif"
+            android:text="Age"
+            android:textColor="#6489E5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
         <EditText
             android:hint="1"
             android:inputType="number"
@@ -206,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Breed"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -224,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weight"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -243,7 +252,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -263,7 +272,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Personality"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
@@ -272,73 +281,73 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose up to 5 personality traits you’d like to share about your pet"
+            android:text="Choose up to 4 personality traits you’d like to share about your pet"
             android:textSize="12sp"
             android:textColor="#444"
             android:layout_marginBottom="4dp"/>
+
+
+        <!-- Photo Upload -->
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:singleLine="false"
+            android:padding="8dp"
             app:selectionRequired="false"
-            app:singleSelection="false"
-            android:padding="8dp">
+            app:singleLine="false"
+            app:singleSelection="false">
 
             <!-- Chip 1 -->
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Active"
                 android:checkable="true"
-                app:chipBackgroundColor="@color/chip_blue"
+                android:text="Active"
                 android:textColor="#FFFFFFFF"
                 app:checkedIconVisible="false"
+                app:chipBackgroundColor="@drawable/chip_selector"
                 app:shapeAppearanceOverlay="@style/ChipStyle" />
 
             <!-- Chip 2 -->
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Affectionate"
                 android:checkable="true"
-                app:chipBackgroundColor="@color/chip_blue"
+                android:text="Affectionate"
                 android:textColor="#FFFFFFFF"
                 app:checkedIconVisible="false"
+                app:chipBackgroundColor="@drawable/chip_selector"
                 app:shapeAppearanceOverlay="@style/ChipStyle" />
 
             <!-- Chip 3 -->
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuddle"
                 android:checkable="true"
-                app:chipBackgroundColor="@color/chip_blue"
+                android:text="Cuddle"
                 android:textColor="#FFFFFFFF"
                 app:checkedIconVisible="false"
+                app:chipBackgroundColor="@drawable/chip_selector"
                 app:shapeAppearanceOverlay="@style/ChipStyle" />
 
             <!-- Chip 4 -->
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friendly"
                 android:checkable="true"
-                app:chipBackgroundColor="@color/chip_blue"
+                android:text="Friendly"
                 android:textColor="#FFFFFFFF"
                 app:checkedIconVisible="false"
+                app:chipBackgroundColor="@drawable/chip_selector"
                 app:shapeAppearanceOverlay="@style/ChipStyle" />
 
         </com.google.android.material.chip.ChipGroup>
 
-
-
-        <!-- Photo Upload -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Photos"
-            android:textColor="#3b5cb8"
+            android:textColor="#6489E5"
             android:textStyle="bold"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
