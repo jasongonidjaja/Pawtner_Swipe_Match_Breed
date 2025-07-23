@@ -1,19 +1,296 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cream_primary"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textEvents"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragment Events"
-        android:textSize="26sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical">
 
+        <!-- Header with location -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Surabaya, Indonesia"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:textColor="@color/black"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Search bar -->
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Search"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:padding="12dp"
+            android:background="@drawable/bg_search_bar"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Most Popular Events section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Most Popular Events"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"/>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Dog Club Party Card with small image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@color/darkblue_card">
+
+                <!-- Small event image -->
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:src="@drawable/dog_club"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Dog Club Party"
+                    android:layout_marginRight="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dog Club Party"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="26 August 2025"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:paddingTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="See Details"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Upcoming Events section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Events"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:id="@+id/filterLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAll"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginHorizontal="6dp"
+                android:minWidth="88dp"
+                android:text="All"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:background="@drawable/filter_button_selector"
+                android:elevation="2dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDog"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginHorizontal="6dp"
+                android:minWidth="88dp"
+                android:text="Dog"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:background="@drawable/filter_button_selector"
+                android:elevation="2dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCat"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginHorizontal="6dp"
+                android:minWidth="88dp"
+                android:text="Cat"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:background="@drawable/filter_button_selector"
+                android:elevation="2dp" />
+        </LinearLayout>
+        <!-- PetFest Event Card with small image -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/eventCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/pets_fest_small"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="PetFest"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PetFest with Special Guest"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brown_font"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="21 - 23 June 2025"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:paddingTop="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Join us from 8–9 AM for a fun-filled Dog Club Party featuring mini games, free vouchers, and the chance to meet fellow dog lovers. All breeds welcome, let the paw-ty begin!"
+                        android:textSize="12sp"
+                        android:paddingTop="8dp"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Pets Junction Card with small image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/pets_junction_small"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Pets Junction"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/brown_font"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pets Junction"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brown_font"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="9 November 2025"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:paddingTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Join us from 8–9 AM for a fun-filled Dog Club Party featuring mini games, free vouchers, and the chance to meet fellow dog lovers. All breeds welcome, let the paw-ty begin!"
+                        android:textSize="12sp"
+                        android:paddingTop="8dp"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
