@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
         phoneInput.setText("089123456789");
         emailInput.setText("maritza@gmail.com");
         addressInput.setText("Jl. Mawar No. 123");
-        nikInput.setText("PWNTR-A00259");
+        nikInput.setText("PWTNR-A00259");
 
         editProfileBtn.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
