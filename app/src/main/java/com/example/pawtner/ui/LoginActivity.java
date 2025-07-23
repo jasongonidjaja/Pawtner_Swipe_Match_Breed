@@ -30,9 +30,23 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.passwordInput);
         Button signInButton = findViewById(R.id.signInButton);
         TextView errorMessage = findViewById(R.id.errorMessage);
-        TextView signUpText = findViewById(R.id.signupText); // ✅ Cukup satu kali deklarasi
+        TextView signUpText = findViewById(R.id.signupText);
 
-        // ✅ Ubah warna dan underline pada "Sign up"
+        // Tombol Google dan Facebook
+        Button googleButton = findViewById(R.id.googleButton);
+        Button facebookButton = findViewById(R.id.facebookButton);
+
+        // Jika tombol Google diklik, langsung masuk ke MainActivity
+        googleButton.setOnClickListener(v -> {
+            goToMainActivity("GoogleUser@example.com");
+        });
+
+        // Jika tombol Facebook diklik, langsung masuk ke MainActivity
+        facebookButton.setOnClickListener(v -> {
+            goToMainActivity("FacebookUser@example.com");
+        });
+
+        // Warna dan underline pada "Sign up"
         String fullText = "Don’t have an account? Sign up";
         SpannableString spannable = new SpannableString(fullText);
         int start = fullText.indexOf("Sign up");
@@ -41,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         spannable.setSpan(new UnderlineSpan(), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         signUpText.setText(spannable);
 
-        // ✅ Validasi Sign In
+        // Validasi Sign In
         signInButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
@@ -54,24 +68,25 @@ public class LoginActivity extends AppCompatActivity {
                 errorMessage.setVisibility(TextView.VISIBLE);
             } else {
                 errorMessage.setVisibility(TextView.GONE);
+                goToMainActivity(email);
+            }
+        });
 
-                    // ✅ Tambahkan data dummy untuk ProfileActivity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("name", "Maritza Eka Rahmadhani");
-                    intent.putExtra("gender", "Female");
-                    intent.putExtra("phone", "081234567890");
-                    intent.putExtra("email", email); // ambil dari input login
-                    intent.putExtra("address", "JL. Bibis Karah A66");
-                    intent.putExtra("nik", "3578216022030003");
-                    startActivity(intent);
-                    finish(); // opsional: supaya tidak bisa kembali ke login
-                }
-            });
-
-        // ✅ Arahkan ke Register
+        // Arahkan ke halaman register
         signUpText.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
+    }
 
+    private void goToMainActivity(String email) {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra("name", "Maritza Eka Rahmadhani");
+        intent.putExtra("gender", "Female");
+        intent.putExtra("phone", "081234567890");
+        intent.putExtra("email", email);
+        intent.putExtra("address", "JL. Bibis Karah A66");
+        intent.putExtra("nik", "3578216022030003");
+        startActivity(intent);
+        finish();
     }
 }

@@ -105,11 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
         MaterialButton facebookButton = findViewById(R.id.facebookButton);
 
         googleButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
 
         facebookButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
+
     }
 }

@@ -115,6 +115,13 @@
         tools:layout="@layout/fragment_events" />
 
     <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.pawtner.ui.events.EventDetailFragment"
+        android:label="Event Detail"
+        tools:layout="@layout/fragment_event_detail" />
+
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.pawtner.ui.notifications.NotificationsFragment"
         android:label="Notifikasi"
