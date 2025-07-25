@@ -22,8 +22,8 @@
     <string name="address">Address</string>
     <string name="national_id">National ID (NIK)</string>
     <string name="cannot_change">*This field cannot be changed once submitted.</string>
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

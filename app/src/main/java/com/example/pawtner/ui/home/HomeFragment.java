@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.pawtner.R;
 import com.example.pawtner.databinding.FragmentHomeBinding;
@@ -305,12 +308,14 @@ public class HomeFragment extends Fragment {
 
     private void showPetInfoBottomSheet() {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_pet_info, null);
+
         TextView tvPetName = bottomSheetView.findViewById(R.id.tvPetName);
         TextView tvSex = bottomSheetView.findViewById(R.id.tvSex);
         TextView tvAge = bottomSheetView.findViewById(R.id.tvAge);
         TextView tvColor = bottomSheetView.findViewById(R.id.tvColor);
         TextView tvWeight = bottomSheetView.findViewById(R.id.tvWeight);
         TextView tvDescription = bottomSheetView.findViewById(R.id.tvDescription);
+        Button btnPetDetail = bottomSheetView.findViewById(R.id.btnPetDetail); // <-- ini ditambahkan
 
         Pet currentPet = pets[currentPetIndex];
         tvPetName.setText(currentPet.name);
@@ -322,11 +327,26 @@ public class HomeFragment extends Fragment {
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
         bottomSheetDialog.setContentView(bottomSheetView);
+
+        // Navigasi saat tombol ditekan
+        btnPetDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.dismiss(); // Tutup bottom sheet
+
+                // Akses NavController dari activity dan navigate
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.action_home_to_petprofileother);
+            }
+        });
+
+        // Atur behavior (opsional)
+        bottomSheetDialog.show();
         BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) bottomSheetView.getParent());
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         behavior.setPeekHeight(800);
-        bottomSheetDialog.show();
     }
+
 
     @Override
     public void onDestroyView() {

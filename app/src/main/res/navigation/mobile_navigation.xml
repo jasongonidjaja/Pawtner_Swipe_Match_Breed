@@ -9,7 +9,18 @@
         android:id="@+id/navigation_home"
         android:name="com.example.pawtner.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_petprofileother"
+            app:destination="@id/navigation_petprofileother"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_petprofileother"
+        android:name="com.example.pawtner.ui.home.PetProfileOtherFragment"
+        android:label="Pet Profile Other"
+        tools:layout="@layout/fragment_pet_profile_other"/>
 
     <fragment
         android:id="@+id/navigation_chat"

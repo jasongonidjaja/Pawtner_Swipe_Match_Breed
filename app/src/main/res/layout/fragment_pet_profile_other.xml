@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_paw">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Header Image -->
+            <FrameLayout
+                android:id="@+id/header_container"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/petImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cat_sample" />
+            </FrameLayout>
+
+            <!-- Profile Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-32dp"
+                android:layout_marginBottom="16dp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:layout_constraintTop_toBottomOf="@id/header_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/TopRoundedCard"
+                app:cardBackgroundColor="@color/white_paw">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Pet Name -->
+                    <TextView
+                        android:id="@+id/tvPetName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bambang"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/darkblue_paw"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Info Chips -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- Chip: Sex -->
+                        <LinearLayout
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/chip_square_background">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sex"
+                                android:textColor="#A0A0A0"
+                                android:textSize="11sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Female"
+                                android:textColor="@color/darkblue_paw"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Chip: Age -->
+                        <LinearLayout
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/chip_square_background">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Age"
+                                android:textColor="#A0A0A0"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="7"
+                                android:textColor="@color/darkblue_paw"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Chip: Color -->
+                        <LinearLayout
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginEnd="30dp"
+                            android:background="@drawable/chip_square_background">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Color"
+                                android:textColor="#A0A0A0"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Grey"
+                                android:textColor="@color/darkblue_paw"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <!-- Chip: Weight -->
+                        <LinearLayout
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="@drawable/chip_square_background">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weight"
+                                android:textColor="#A0A0A0"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3 kg"
+                                android:textColor="@color/darkblue_paw"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+
+                    <!-- Owner Info -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_background"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageView
+                            android:id="@+id/catImage"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/profile_sample"
+                            android:scaleType="centerCrop"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/circle_background"
+                            android:clipToOutline="true" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:text="Tatang Sutarman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/darkblue_paw"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:text="Owner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#6488E5"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="1.68 km"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#6488E5"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Description -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/darkblue_paw"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Bambang is a super energetic and playful 2-year-old tabby cat who loves chasing laser dots and climbing anything she can. She’s curious about everything, gets along well with other cats, and is always up for a new adventure. Perfect match for an equally playful companion!" />
+
+                    <!-- More Info -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp">
+
+                        <!-- Reusable row for each info -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/info_outline_box_transparent"
+                            android:padding="6dp"
+                            android:layout_marginBottom="0dp"
+                            android:paddingStart="16dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breed : "
+                                android:textColor="@color/darkgrey_paw"
+                                android:textSize="14sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="British Shorthair"
+                                android:textStyle="bold"
+                                android:textColor="@color/darkblue_paw"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Header Post -->
+            <LinearLayout
+                android:id="@+id/posts_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="24dp"
+                app:layout_constraintTop_toBottomOf="@id/profile_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/darkgrey_paw" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POSTS"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkgrey_paw"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginVertical="8dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- RecyclerView Post -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/posts_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

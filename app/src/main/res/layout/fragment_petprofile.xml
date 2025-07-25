@@ -244,47 +244,6 @@
                                     android:layout_height="wrap_content"
                                     android:text="British Shorthair" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/darkblue_paw"/>
                             </LinearLayout>
-
-                            <!-- Vaccinated -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/info_outline_box"
-                                android:padding="6dp"
-                                android:layout_marginBottom="10dp"
-                                android:paddingStart="16dp"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Vaccinated Status : " android:textSize="14sp" android:textColor="@color/darkgrey_paw"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Yes" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/darkblue_paw"/>
-                            </LinearLayout>
-
-                            <!-- Special Condition -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/info_outline_box"
-                                android:padding="6dp"
-                                android:layout_marginBottom="10dp"
-                                android:paddingStart="16dp"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Special Condition : " android:textSize="14sp" android:textColor="@color/darkgrey_paw"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Sensitive to chicken-based food" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/darkblue_paw"/>
-                            </LinearLayout>
-
                         </LinearLayout>
 
                     </LinearLayout>
