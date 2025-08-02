@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Custom Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
+   <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -16,7 +15,6 @@
         app:title="Nama Kontak"
         app:titleTextColor="@android:color/white" />
 
-    <!-- Chat messages -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
@@ -25,8 +23,69 @@
         android:padding="8dp"
         android:clipToPadding="false" />
 
-    <!-- Chat input -->
     <LinearLayout
+        android:id="@+id/image_preview_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@color/blue_primary"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/selected_image_preview"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_centerInParent="true"
+                android:background="@android:color/darker_gray"
+                android:contentDescription="Selected Image Preview" />
+
+            <ImageButton
+                android:id="@+id/close_image_preview_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_close"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@android:color/white"
+                android:contentDescription="Close Image Preview" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/image_caption_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tambahkan caption..."
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888"
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="3" />
+
+        <Button
+            android:id="@+id/send_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kirim"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/blue_primary"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -90,7 +149,6 @@
             android:tint="@android:color/white" />
     </LinearLayout>
 
-    <!-- Attachment menu (initially hidden) -->
     <LinearLayout
         android:id="@+id/attachment_options"
         android:layout_width="match_parent"
@@ -199,7 +257,164 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/custom_gallery_layout"
+        android:layout_width="match_parent"
+        android:layout_height="380dp" android:orientation="vertical"
+        android:background="@color/blue_primary"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@color/blue_primary"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Your Photo"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageButton
+                android:id="@+id/close_custom_gallery_button"
+                android:layout_width="32dp"   android:layout_height="32dp"  android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_close"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@android:color/white"
+                android:scaleType="fitCenter"
+                android:padding="6dp" android:contentDescription="Close Gallery" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
+
+            <ImageView
+                android:id="@+id/gallery_image_1"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@color/blue_primary"
+                android:layout_margin="1dp" android:src="@drawable/ic_gallery"
+                android:tint="@color/white"
+                android:contentDescription="Gallery Image 1" />
+
+            <ImageView
+                android:id="@+id/gallery_image_2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp" android:src="@drawable/profile_sample" android:contentDescription="Gallery Image 2" />
+
+            <ImageView
+                android:id="@+id/gallery_image_3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp" android:src="@drawable/profile" android:contentDescription="Gallery Image 3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
+
+            <ImageView
+                android:id="@+id/gallery_image_4"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample" android:contentDescription="Gallery Image 4" />
+
+            <ImageView
+                android:id="@+id/gallery_image_5"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample"
+                android:contentDescription="Gallery Image 5" />
+
+            <ImageView
+                android:id="@+id/gallery_image_6"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample"
+                android:contentDescription="Gallery Image 6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
+
+            <ImageView
+                android:id="@+id/gallery_image_7"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample" android:contentDescription="Gallery Image 7" />
+
+            <ImageView
+                android:id="@+id/gallery_image_8"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample" android:contentDescription="Gallery Image 8" />
+
+            <ImageView
+                android:id="@+id/gallery_image_9"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="1dp"
+                android:src="@drawable/profile_sample" android:contentDescription="Gallery Image 9" />
+        </LinearLayout>
 
 
+    </LinearLayout>
 
 </LinearLayout>

@@ -25,6 +25,8 @@ public class ChatFragment extends Fragment {
     private ChatAdapter adapter;
     private List<Chat> chatList;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class ChatFragment extends Fragment {
 
         adapter = new ChatAdapter(chatList);
         recyclerView.setAdapter(adapter);
+
+
 
         return view;
     }

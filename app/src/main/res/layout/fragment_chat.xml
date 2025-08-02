@@ -7,21 +7,53 @@
     android:padding="16dp"
     android:background="#FFF8EF">
 
-    <!-- Search bar -->
-    <EditText
-        android:id="@+id/search_input"
+    <TextView
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Search"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:padding="12dp"
-        android:background="@drawable/bg_search_bar"
-        android:layout_marginBottom="12dp" />
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="#1D1B1B"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
 
-    <!-- RecyclerView untuk daftar chat -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="13dp" />
+
+    <!--    <androidx.appcompat.widget.SearchView-->
+    <!--        android:id="@+id/searchView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="0dp"-->
+    <!--        android:background="@drawable/search_background"-->
+    <!--        android:iconifiedByDefault="false"-->
+    <!--        app:queryHint="Search Chat"-->
+    <!--        app:defaultQueryHint="Search Chat"-->
+    <!--        android:textColorHint="#808080"-->
+    <!--        app:searchHintIcon="@null"-->
+    <!--        app:searchIcon="@drawable/ic_search"-->
+    <!--        android:inputType="text" />-->
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/search_background"
+        android:iconifiedByDefault="false"
+        app:queryHint="Search chat" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginTop="14dp"/>
 </LinearLayout>
