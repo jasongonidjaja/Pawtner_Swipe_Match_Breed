@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="12dp"
-                android:background="@color/darkblue_card">
+                android:background="#FFC0CB">
 
                 <!-- Small event image -->
                 <ImageView
