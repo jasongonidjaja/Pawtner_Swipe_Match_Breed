@@ -32,25 +32,22 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private static final int SWIPE_THRESHOLD = 100;
-    private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-    private ImageView imagePet;
-    private View tapLeft, tapRight;
-    private LinearLayout storyIndicator;
+    private float initialX, initialY;
+    private boolean isAnimating = false;
+    private Toast badgeToast;
 
     private class Pet {
         String name;
-        int[] photos;
-        int currentPhotoIndex = 0;
+        int photo;
         String sex;
         String age;
         String color;
         String weight;
         String description;
 
-        Pet(String name, int[] photos, String sex, String age, String color, String weight, String description) {
+        Pet(String name, int photo, String sex, String age, String color, String weight, String description) {
             this.name = name;
-            this.photos = photos;
+            this.photo = photo;
             this.sex = sex;
             this.age = age;
             this.color = color;
@@ -60,23 +57,15 @@ public class HomeFragment extends Fragment {
     }
 
     private Pet[] pets = {
-            new Pet("Yuki",
-                    new int[]{R.drawable.pet1, R.drawable.pet2, R.drawable.pet3},
-                    "Female", "7", "Brown", "5 kg",
-                    "Yuki is a fun loving, sweet Dalmatian, rescued from overseas. Loves to cuddle and play with other dogs."),
-            new Pet("Buddy",
-                    new int[]{R.drawable.pet4, R.drawable.pet5},
-                    "Female", "5", "White", "4 kg",
-                    "Buddy is a playful and energetic dog who loves long walks and fetch games."),
-            new Pet("Max",
-                    new int[]{R.drawable.pet6, R.drawable.pet7, R.drawable.pet8, R.drawable.pet9},
-                    "Female", "3", "Black", "5 kg",
-                    "Max is a pug who enjoys quiet evenings and belly rubs.")
+            new Pet("Yuki", R.drawable.pet1, "Female", "7", "Brown", "5 Kg",
+                    "Fun loving Dalmatian who loves to cuddle"),
+            new Pet("Buddy", R.drawable.pet4, "Female", "5",  "White", "4 kg",
+                    "Playful and energetic dog"),
+            new Pet("Max", R.drawable.pet6, "Female", "3", "Black", "5 kg",
+                    "Pug who enjoys quiet evenings")
     };
 
     private int currentPetIndex = 0;
-    private GestureDetector gestureDetector;
-    private boolean isAnimating = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,149 +76,197 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imagePet = binding.imagePet;
-        tapLeft = binding.tapLeft;
-        tapRight = binding.tapRight;
-        storyIndicator = binding.storyIndicator;
 
-        setupInfoButton();
-        setupStoryNavigation();
-        setupSwipeGestures();
+        setupSwipeDetection();
+        setupActionButtons();
+        updateCurrentPet();
         setupProfileDropdown();
         setupFilterButton();
-        setupActionButtons();
-
-        updateCurrentPhoto();
-        updateProgressBar();
-        updatePetInfo();
+        setupInfoButton();
     }
 
-    private void setupInfoButton() {
-        binding.btnInfo.setOnClickListener(v -> showPetInfoBottomSheet());
-    }
-
-    private void setupStoryNavigation() {
-        tapLeft.setOnClickListener(v -> {
-            if (isAnimating) return;
-            Pet currentPet = pets[currentPetIndex];
-            if (currentPet.currentPhotoIndex > 0) {
-                currentPet.currentPhotoIndex--;
-                updateCurrentPhoto();
-                updateProgressBar();
-            }
-        });
-
-        tapRight.setOnClickListener(v -> {
-            if (isAnimating) return;
-            Pet currentPet = pets[currentPetIndex];
-            if (currentPet.currentPhotoIndex < currentPet.photos.length - 1) {
-                currentPet.currentPhotoIndex++;
-                updateCurrentPhoto();
-                updateProgressBar();
-            } else {
-                Toast.makeText(requireContext(), "No more photos for this pet", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void setupSwipeGestures() {
-        gestureDetector = new GestureDetector(requireContext(), new GestureDetector.SimpleOnGestureListener() {
+    private void setupSwipeDetection() {
+        binding.swipeLayer.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            public boolean onTouch(View v, MotionEvent event) {
                 if (isAnimating) return false;
 
-                float deltaX = e2.getX() - e1.getX();
-                float deltaY = e2.getY() - e1.getY();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        initialX = event.getX();
+                        initialY = event.getY();
+                        // Sembunyikan badge saat mulai swipe baru
+                        binding.ivLikeBadge.setVisibility(View.GONE);
+                        binding.ivDislikeBadge.setVisibility(View.GONE);
+                        return true;
 
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (deltaX > 0) performLikeAction();
-                        else performDislikeAction();
+                    case MotionEvent.ACTION_MOVE:
+                        float moveDeltaX = event.getX() - initialX; // Changed variable name
+                        if (Math.abs(moveDeltaX) > 10) {
+                            binding.petCard.setTranslationX(moveDeltaX);
+                            binding.petCard.setRotation(moveDeltaX / 15f);
+
+                            if (moveDeltaX > 0) {
+                                showLikeBadge();
+                            } else {
+                                showDislikeBadge();
+                            }
+
+                            // Atur opacity berdasarkan seberapa jauh swipe-nya
+                            float alpha = Math.min(1f, Math.abs(moveDeltaX) / SWIPE_THRESHOLD);
+                            binding.ivLikeBadge.setAlpha(alpha);
+                            binding.ivDislikeBadge.setAlpha(alpha);
+                        }
                         return true;
-                    }
-                } else {
-                    if (Math.abs(deltaY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (deltaY < 0) showPetInfoBottomSheet();
-                        return true;
-                    }
+
+                    case MotionEvent.ACTION_UP:
+                        float finalX = event.getX();
+                        float finalY = event.getY();
+                        binding.ivLikeBadge.setVisibility(View.GONE);
+                        binding.ivDislikeBadge.setVisibility(View.GONE);
+
+                        float deltaX = finalX - initialX; // This is now the only declaration
+                        float deltaY = finalY - initialY;
+
+                        // Horizontal swipe detection
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                            if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+                                if (deltaX > 0) {
+                                    performLikeAction();
+                                } else {
+                                    performDislikeAction();
+                                }
+                            } else {
+                                resetCardPosition();
+                            }
+                            return true;
+                        }
+                        // Vertical swipe up for info
+                        else if (deltaY < -SWIPE_THRESHOLD) {
+                            showToast("Show pet info");
+                            showPetInfoBottomSheet();
+                            return true;
+                        } else {
+                            resetCardPosition();
+                        }
+                        return false;
                 }
                 return false;
             }
         });
+    }
 
-        binding.petCard.setOnTouchListener((v, event) -> {
-            gestureDetector.onTouchEvent(event);
+    private void showLikeBadge() {
+        binding.ivLikeBadge.setVisibility(View.VISIBLE);
+        binding.ivDislikeBadge.setVisibility(View.GONE);
 
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN:
-                    return true;
-                case MotionEvent.ACTION_MOVE:
-                    float deltaX = event.getX() - event.getHistoricalX(0);
-                    float deltaY = event.getY() - event.getHistoricalY(0);
-                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                        binding.petCard.setTranslationX(deltaX);
-                        binding.petCard.setRotation(deltaX / 15f);
-                    }
-                    return true;
-                case MotionEvent.ACTION_UP:
-                    float dx = event.getX() - event.getDownTime();
-                    float dy = event.getY() - event.getDownTime();
-                    if (dx > SWIPE_THRESHOLD) performLikeAction();
-                    else if (dx < -SWIPE_THRESHOLD) performDislikeAction();
-                    else if (dy < -SWIPE_THRESHOLD) showPetInfoBottomSheet();
-                    else binding.petCard.animate().translationX(0).rotation(0).setDuration(200).start();
-                    return true;
-            }
-            return false;
+        // Tampilkan toast sementara
+        if (badgeToast != null) badgeToast.cancel();
+        badgeToast = Toast.makeText(requireContext(), "Like badge muncul", Toast.LENGTH_SHORT);
+        badgeToast.show();
+    }
+
+    private void showDislikeBadge() {
+        binding.ivLikeBadge.setVisibility(View.GONE);
+        binding.ivDislikeBadge.setVisibility(View.VISIBLE);
+
+        // Tampilkan toast sementara
+        if (badgeToast != null) badgeToast.cancel();
+        badgeToast = Toast.makeText(requireContext(), "Dislike badge muncul", Toast.LENGTH_SHORT);
+        badgeToast.show();
+    }
+    private void setupActionButtons() {
+        binding.btnLike.setOnClickListener(v -> {
+            if (!isAnimating) performLikeAction();
+        });
+
+        binding.btnDislike.setOnClickListener(v -> {
+            if (!isAnimating) performDislikeAction();
+        });
+
+        binding.btnInfo.setOnClickListener(v -> {
+            showToast("Show pet info");
         });
     }
 
-    private void setupActionButtons() {
-        binding.btnLike.setOnClickListener(v -> { if (!isAnimating) performLikeAction(); });
-        binding.btnDislike.setOnClickListener(v -> { if (!isAnimating) performDislikeAction(); });
-    }
-
     private void performLikeAction() {
-        Pet currentPet = pets[currentPetIndex];
-        Toast.makeText(requireContext(), "Liked " + currentPet.name + "! ❤️", Toast.LENGTH_SHORT).show();
+        isAnimating = true;
+        showLikeBadge();
+        binding.ivLikeBadge.setAlpha(1f);
+//        Toast.makeText(requireContext(), "Liked " + pets[currentPetIndex].name + "! ❤️", Toast.LENGTH_SHORT).show();
         animateCardSwipe(true);
     }
 
     private void performDislikeAction() {
-        Pet currentPet = pets[currentPetIndex];
-        Toast.makeText(requireContext(), "Disliked " + currentPet.name + "! ✖️", Toast.LENGTH_SHORT).show();
+        isAnimating = true;
+        showDislikeBadge();
+        binding.ivDislikeBadge.setAlpha(1f);
+//        Toast.makeText(requireContext(), "Disliked " + pets[currentPetIndex].name + "! ✖️", Toast.LENGTH_SHORT).show();
         animateCardSwipe(false);
     }
 
     private void animateCardSwipe(boolean isLike) {
-        isAnimating = true;
         float translationX = isLike ? 1000f : -1000f;
         float rotation = isLike ? 20f : -20f;
+
+        if (isLike) {
+            showLikeBadge();
+        } else {
+            showDislikeBadge();
+        }
+        binding.ivLikeBadge.setAlpha(1f);
+        binding.ivDislikeBadge.setAlpha(1f);
+
         binding.petCard.animate()
                 .translationX(translationX)
                 .rotation(rotation)
                 .alpha(0.5f)
                 .setDuration(300)
                 .withEndAction(() -> {
-                    binding.petCard.setTranslationX(0);
-                    binding.petCard.setRotation(0);
-                    binding.petCard.setAlpha(1f);
+                    // Batalkan toast saat animasi selesai
+                    if (badgeToast != null) {
+                        badgeToast.cancel();
+                    }
+                    binding.ivLikeBadge.setVisibility(View.GONE);
+                    binding.ivDislikeBadge.setVisibility(View.GONE);
+                    resetCardPosition();
                     moveToNextPet();
                     isAnimating = false;
                 })
                 .start();
     }
 
+    private void resetCardPosition() {
+        binding.ivLikeBadge.setVisibility(View.GONE);
+        binding.ivDislikeBadge.setVisibility(View.GONE);
+        binding.petCard.animate()
+                .translationX(0)
+                .rotation(0)
+                .alpha(1f)
+                .setDuration(200)
+                .start();
+    }
+
     private void moveToNextPet() {
-        if (currentPetIndex < pets.length - 1) currentPetIndex++;
-        else {
+        if (currentPetIndex < pets.length - 1) {
+            currentPetIndex++;
+        } else {
             currentPetIndex = 0;
             Toast.makeText(requireContext(), "Starting over with pets", Toast.LENGTH_SHORT).show();
         }
-        pets[currentPetIndex].currentPhotoIndex = 0;
-        updateCurrentPhoto();
-        updateProgressBar();
-        updatePetInfo();
+        updateCurrentPet();
+    }
+
+    private void updateCurrentPet() {
+        Pet currentPet = pets[currentPetIndex];
+        binding.imagePet.setImageResource(currentPet.photo);
+        binding.petName.setText(currentPet.name);
+        binding.petGender.setText(currentPet.sex);
+        binding.petAge.setText(currentPet.age + " Y.O");
+    }
+
+    private void setupInfoButton() {
+        binding.btnInfo.setOnClickListener(v -> showPetInfoBottomSheet());
     }
 
     private void setupProfileDropdown() {
@@ -238,32 +275,6 @@ public class HomeFragment extends Fragment {
 
     private void setupFilterButton() {
         binding.settingsButton.setOnClickListener(this::showFilterPopup);
-    }
-
-    private void updateCurrentPhoto() {
-        Pet currentPet = pets[currentPetIndex];
-        imagePet.setAlpha(0f);
-        imagePet.setImageResource(currentPet.photos[currentPet.currentPhotoIndex]);
-        imagePet.animate().alpha(1f).setDuration(200).start();
-    }
-
-    private void updateProgressBar() {
-        storyIndicator.removeAllViews();
-        Pet currentPet = pets[currentPetIndex];
-        for (int i = 0; i < currentPet.photos.length; i++) {
-            ProgressBar progressBar = new ProgressBar(requireContext(), null, android.R.attr.progressBarStyleHorizontal);
-            progressBar.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-            progressBar.setMax(100);
-            progressBar.setProgress(i == currentPet.currentPhotoIndex ? 100 : 0);
-            storyIndicator.addView(progressBar);
-        }
-    }
-
-    private void updatePetInfo() {
-        Pet currentPet = pets[currentPetIndex];
-        binding.petName.setText(currentPet.name);
-        binding.petGender.setText(currentPet.sex);
-        binding.petAge.setText(currentPet.age + " Y.O");
     }
 
     private void showPetDropdownPopup(View anchorView) {
@@ -348,9 +359,17 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void showToast(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        Log.d("SWIPE_DEBUG", message);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (badgeToast != null) {
+            badgeToast.cancel();
+        }
         binding = null;
     }
 }

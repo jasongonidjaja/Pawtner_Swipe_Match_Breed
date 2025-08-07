@@ -25,11 +25,21 @@
         android:alignmentMode="alignMargins"
         android:useDefaultMargins="true">
 
-        <RadioButton android:text="Labrador" android:id="@+id/breed1"/>
-        <RadioButton android:text="Poodle"/>
-        <RadioButton android:text="Doberman"/>
-        <RadioButton android:text="Pomeranian"/>
-        <RadioButton android:text="Pug"/>
+        <RadioButton
+            android:text="Labrador"
+            android:id="@+id/breed1"
+            android:buttonTint="@color/blue_primary"/>
+        <RadioButton
+            android:text="Poodle"
+            android:buttonTint="@color/blue_primary"/>
+        <RadioButton
+            android:text="Doberman"
+            android:buttonTint="@color/blue_primary"/>
+        <RadioButton
+            android:text="Pomeranian"
+            android:buttonTint="@color/blue_primary"/>
+        <RadioButton android:text="Pug"
+            android:buttonTint="@color/blue_primary"/>
     </GridLayout>
 
     <!-- Size -->
@@ -53,16 +63,19 @@
             android:id="@+id/size_m"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/blue_primary"
             android:text="M"/>
         <RadioButton
             android:id="@+id/size_l"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/blue_primary"
             android:text="L"/>
         <RadioButton
             android:id="@+id/size_xl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/blue_primary"
             android:text="XL"/>
     </RadioGroup>
 
@@ -74,15 +87,18 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        />
 
     <SeekBar
         android:id="@+id/age_range_end"
-        android:layout_width="wrap_content"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:max="40"
         android:progress="40"
-        android:layout_marginBottom="4dp" />
+        android:progressTint="@color/blue_primary"
+        android:thumbTint="@color/blue_primary" />
 
     <!-- Tambahan angka 1 dan 40 -->
     <LinearLayout
@@ -126,7 +142,10 @@
         <Switch
             android:id="@+id/switch_nearby"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/switch_thumb_color"
+            android:trackTint="@color/switch_track_color"
+            />
     </LinearLayout>
 
     <!-- Search Button -->
