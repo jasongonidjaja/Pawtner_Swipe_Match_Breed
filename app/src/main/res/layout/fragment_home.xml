@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_primary"
+    android:background="@color/white_paw"
     tools:context=".ui.home.HomeFragment">
 
     <!-- Top Profile Selector Bar -->
@@ -40,7 +40,6 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/sample_dog"
-                    android:scaleType="centerCrop"
                     android:background="@drawable/circle_background"/>
 
                 <TextView
@@ -49,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:text="Anbudi 001"
                     android:textSize="16sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/darkblue_paw"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"/>
 
@@ -157,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="835 m Away"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/white_paw"
                         android:textSize="14sp"/>
                 </androidx.cardview.widget.CardView>
 
@@ -181,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="100%"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/white_paw"
                         android:textSize="14sp"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -204,7 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yuki"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white_paw"
                     android:textSize="24sp"
                     android:textStyle="bold"/>
 
@@ -219,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Female"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/white_paw"
                         android:textSize="16sp"/>
 
                     <View
@@ -235,7 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7 Y.O"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/white_paw"
                         android:textSize="16sp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -267,6 +266,8 @@
                         android:layout_height="match_parent"
                         android:background="@color/blue_paw"
                         android:contentDescription="Dislike"
+                        android:scaleType="centerInside"
+                        android:padding="12dp"
                         android:src="@drawable/ic_cross"/>
                 </androidx.cardview.widget.CardView>
 
@@ -290,6 +291,8 @@
                         android:layout_height="match_parent"
                         android:background="@color/blue_paw"
                         android:contentDescription="Info"
+                        android:scaleType="centerInside"
+                        android:padding="10dp"
                         android:src="@drawable/ic_info"/>
                 </androidx.cardview.widget.CardView>
 
@@ -311,6 +314,8 @@
                         android:layout_height="match_parent"
                         android:background="@color/blue_paw"
                         android:contentDescription="Like"
+                        android:scaleType="centerInside"
+                        android:padding="12dp"
                         android:src="@drawable/ic_heart"/>
                 </androidx.cardview.widget.CardView>
 

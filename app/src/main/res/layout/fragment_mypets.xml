@@ -24,12 +24,12 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MY PETS"
-                android:textSize="24sp"
+                android:text="My Pets"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/avenirltproblack"
                 android:gravity="center"
-                android:textColor="#1D1B1B"
+                android:textColor="@color/darkblue_paw"
                 android:padding="15dp" />
 
             <!-- Search -->
@@ -61,7 +61,7 @@
                     android:minWidth="88dp"
                     android:text="All"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkblue_paw"
                     android:textSize="12sp"
                     android:background="@drawable/filter_button_selector"
                     android:elevation="2dp" />
@@ -74,7 +74,7 @@
                     android:minWidth="88dp"
                     android:text="Dog"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkblue_paw"
                     android:textSize="12sp"
                     android:background="@drawable/filter_button_selector"
                     android:elevation="2dp" />
@@ -87,7 +87,7 @@
                     android:minWidth="88dp"
                     android:text="Cat"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkblue_paw"
                     android:textSize="12sp"
                     android:background="@drawable/filter_button_selector"
                     android:elevation="2dp" />

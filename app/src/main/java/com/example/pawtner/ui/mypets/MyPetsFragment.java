@@ -88,6 +88,9 @@ public class MyPetsFragment extends Fragment {
             searchText.setHint("Search Pet");
             searchText.setHintTextColor(Color.parseColor("#999999"));
             searchText.setTextColor(Color.parseColor("#1D1B1B"));
+            searchText.setTextSize(12); // Ukuran teks hint dan input
+            searchText.setGravity(android.view.Gravity.CENTER_VERTICAL); // Posisi vertikal di tengah
+
         }
 
         petAdapter = new PetAdapter(requireContext(), petList, pet -> {
@@ -103,12 +106,12 @@ public class MyPetsFragment extends Fragment {
         View.OnClickListener filterClickListener = v -> {
             for (Button btn : filterButtons) {
                 btn.setSelected(false);
-                btn.setTextColor(requireContext().getColor(R.color.maroon)); // Non-aktif = maroon
+                btn.setTextColor(requireContext().getColor(R.color.darkblue_paw)); // Non-aktif
             }
 
             Button clickedBtn = (Button) v;
             clickedBtn.setSelected(true);
-            clickedBtn.setTextColor(requireContext().getColor(R.color.my_black)); // Aktif = hitam
+            clickedBtn.setTextColor(requireContext().getColor(R.color.darkblue_paw)); // Aktif
 
             String filterType = clickedBtn.getText().toString();
             petAdapter.filterByType(filterType);
@@ -120,7 +123,7 @@ public class MyPetsFragment extends Fragment {
 
         // Set default selected (All)
         btnAll.setSelected(true);
-        btnAll.setTextColor(requireContext().getColor(R.color.my_black));
+        btnAll.setTextColor(requireContext().getColor(R.color.darkblue_paw));
 
         // --- SEARCH LISTENER ---
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -53,7 +53,7 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="12dp"
                 android:text="Sign Up"
-                android:textColor="#000000"
+                android:textColor="@color/darkblue_paw"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -227,7 +227,7 @@
             android:backgroundTint="#FFFFFF"
             android:text="GOOGLE"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="@color/darkblue_paw"
             app:icon="@drawable/ic_google"
             app:iconSize="30dp"
             app:cornerRadius="20dp"
@@ -243,7 +243,7 @@
             android:text="FACEBOOK"
             app:cornerRadius="20dp"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="@color/darkblue_paw"
             app:icon="@drawable/ic_facebook"
             app:iconSize="24dp"
             app:iconTintMode="multiply" />
@@ -256,7 +256,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already have an account? Sign in"
-        android:textColor="#000000"
+        android:textColor="@color/darkblue_paw"
         android:textSize="14sp"
         android:clickable="true"
         android:focusable="true"

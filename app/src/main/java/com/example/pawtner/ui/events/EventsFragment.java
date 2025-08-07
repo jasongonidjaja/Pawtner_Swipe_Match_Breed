@@ -2,11 +2,16 @@ package com.example.pawtner.ui.events;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.widget.EditText;
+
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -40,10 +45,43 @@ public class EventsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentEventsBinding.inflate(inflater, container, false);
+
         setupImageCarousel();
         setupCardClickListener();
-        return binding.getRoot();
+        setupFilterButtons();
+
+        SearchView searchView = binding.searchView;
+
+        // Penting agar hint bisa muncul
+        searchView.setIconified(false);       // buka langsung search view
+        searchView.clearFocus();              // hilangkan fokus agar hint muncul
+
+        // Styling EditText di dalam SearchView
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextSize(14); // Ukuran teks
+        searchEditText.setGravity(Gravity.CENTER_VERTICAL); // Rata tengah vertikal
+        searchEditText.setTextColor(getResources().getColor(R.color.black)); // warna teks
+
+        // Set hint dengan benar (jangan di EditText)
+        searchView.setQueryHint("Search Event");
+
+        // Dummy listener (tidak perlu fungsi)
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+
+        return binding.getRoot(); // Harus tetap di paling akhir
     }
+
+
 
     private void setupImageCarousel() {
         carouselRecyclerView = binding.recyclerView;
@@ -150,4 +188,29 @@ public class EventsFragment extends Fragment {
         binding = null;
         autoScrollHandler.removeCallbacks(autoScrollRunnable);
     }
+
+    private void setupFilterButtons() {
+        List<AppCompatButton> buttons = new ArrayList<>();
+        buttons.add(binding.btnAll);
+        buttons.add(binding.btnDog);
+        buttons.add(binding.btnCat);
+
+        View.OnClickListener filterClickListener = view -> {
+            for (AppCompatButton button : buttons) {
+                button.setSelected(false); // reset semua
+            }
+            view.setSelected(true); // aktifkan yang ditekan
+
+            // Tambahkan logika filter event sesuai button yang dipilih, jika perlu
+        };
+
+        for (AppCompatButton button : buttons) {
+            button.setOnClickListener(filterClickListener);
+        }
+
+        // Default selected (All)
+        binding.btnAll.setSelected(true);
+    }
+
 }
+

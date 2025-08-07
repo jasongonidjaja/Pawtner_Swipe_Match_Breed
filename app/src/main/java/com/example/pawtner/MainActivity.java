@@ -55,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Tampilkan toast sesuai menu
-            if (id == R.id.navigation_home) {
-                Toast.makeText(this, "Home ditekan", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.navigation_chat) {
-                Toast.makeText(this, "Chat ditekan", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.navigation_mypets) {
-                Toast.makeText(this, "My Pets ditekan", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.navigation_events) {
-                Toast.makeText(this, "Event ditekan", Toast.LENGTH_SHORT).show();
-            }
+//            if (id == R.id.navigation_home) {
+//                Toast.makeText(this, "Home ditekan", Toast.LENGTH_SHORT).show();
+//            } else if (id == R.id.navigation_chat) {
+//                Toast.makeText(this, "Chat ditekan", Toast.LENGTH_SHORT).show();
+//            } else if (id == R.id.navigation_mypets) {
+//                Toast.makeText(this, "My Pets ditekan", Toast.LENGTH_SHORT).show();
+//            } else if (id == R.id.navigation_events) {
+//                Toast.makeText(this, "Event ditekan", Toast.LENGTH_SHORT).show();
+//            }
 
             // Navigasi dengan popUpTo agar membersihkan fragment sebelumnya
             NavOptions navOptions = new NavOptions.Builder()

@@ -1,13 +1,18 @@
 package com.example.pawtner.ui.chat;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 
 import com.example.pawtner.R; // <--- PENTING!
 import com.example.pawtner.adapters.ChatAdapter;
@@ -25,6 +30,8 @@ public class ChatFragment extends Fragment {
     private ChatAdapter adapter;
     private List<Chat> chatList;
 
+    private SearchView searchView;
+
 
 
     @Override
@@ -32,6 +39,7 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
+        searchView = view.findViewById(R.id.searchView);
         recyclerView = view.findViewById(R.id.chat_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -43,8 +51,27 @@ public class ChatFragment extends Fragment {
         adapter = new ChatAdapter(chatList);
         recyclerView.setAdapter(adapter);
 
-
-
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SearchView searchView = view.findViewById(R.id.searchView);
+
+        // Pastikan terbuka
+        searchView.setIconified(false);
+        searchView.clearFocus();
+
+        // Ambil EditText internal
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextSize(14); // kecilkan teks
+        searchEditText.setPadding(0, 6, 0, 0); // atur padding agar vertikal tengah
+        searchEditText.setGravity(Gravity.CENTER_VERTICAL); // pastikan gravity
+    }
+
+
+
+
 }

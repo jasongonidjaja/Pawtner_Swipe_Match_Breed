@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="24dp"
     android:background="@drawable/rounded_top_bg"
     android:padding="16dp">
+
     <!-- Drag handle -->
     <View
         android:layout_width="40dp"
         android:layout_height="4dp"
         android:background="@color/gray_light"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
 
-    <!-- Pet Name (keep left-aligned) -->
+    <!-- Pet Name -->
     <TextView
         android:id="@+id/tvPetName"
         android:layout_width="wrap_content"
@@ -23,8 +24,8 @@
         android:text="Yuki"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_gravity="start" /> <!-- ✅ LEFT ALIGN -->
+        android:textColor="@color/darkblue_paw"
+        android:layout_gravity="start" />
 
     <!-- Pet Details Row -->
     <LinearLayout
@@ -32,17 +33,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"> <!-- ✅ CENTER HORIZONTALLY -->
+        android:gravity="center_horizontal">
 
         <!-- Sex -->
         <LinearLayout
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/blue_border_box"
-            android:padding="8dp"
-            >
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,17 +50,18 @@
                 android:text="Sex"
                 android:textColor="@color/darkgrey_paw"
                 android:textSize="14sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tvSex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female"
+                android:textColor="@color/darkblue_paw"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_marginTop="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
         <!-- Age -->
@@ -68,7 +69,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/blue_border_box"
             android:padding="8dp">
 
@@ -78,17 +79,18 @@
                 android:text="Age"
                 android:textColor="@color/darkgrey_paw"
                 android:textSize="14sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tvAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
+                android:textColor="@color/darkblue_paw"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
         <!-- Color -->
@@ -96,7 +98,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/blue_border_box"
             android:padding="8dp">
 
@@ -106,17 +108,18 @@
                 android:text="Color"
                 android:textColor="@color/darkgrey_paw"
                 android:textSize="14sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tvColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Grey"
+                android:textColor="@color/darkblue_paw"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
         <!-- Weight -->
@@ -133,21 +136,22 @@
                 android:text="Weight"
                 android:textColor="@color/darkgrey_paw"
                 android:textSize="14sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tvWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3 kg"
+                android:textColor="@color/darkblue_paw"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Pet Detail Button (centered by parent gravity) -->
+    <!-- Pet Detail Button -->
     <Button
         android:id="@+id/btnPetDetail"
         android:layout_width="150dp"
@@ -159,22 +163,24 @@
         app:cornerRadius="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal" />
 
-    <!-- Pet Description Title (keep left-aligned) -->
+    <!-- Pet Description Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pet Description"
+        android:textColor="@color/darkblue_paw"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_gravity="start"/> <!-- ✅ LEFT ALIGN -->
+        android:layout_gravity="start" />
 
-    <!-- Pet Description (keep left-aligned) -->
+    <!-- Pet Description -->
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="360dp"
-        android:layout_height="86dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="86dp"
         android:padding="10dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/blue_rounded_bg"
@@ -182,4 +188,5 @@
         android:text="Buddy is a fun loving, sweet Dalmatian, rescued from overseas. Loves to cuddle, and play with other dogs."
         android:textColor="@color/white"
         android:textSize="16sp" />
+
 </LinearLayout>

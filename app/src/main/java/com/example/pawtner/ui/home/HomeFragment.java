@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
                         }
                         // Vertical swipe up for info
                         else if (deltaY < -SWIPE_THRESHOLD) {
-                            showToast("Show pet info");
+//                            showToast("Show pet info");
                             showPetInfoBottomSheet();
                             return true;
                         } else {
@@ -162,8 +162,8 @@ public class HomeFragment extends Fragment {
 
         // Tampilkan toast sementara
         if (badgeToast != null) badgeToast.cancel();
-        badgeToast = Toast.makeText(requireContext(), "Like badge muncul", Toast.LENGTH_SHORT);
-        badgeToast.show();
+//        badgeToast = Toast.makeText(requireContext(), "Like badge muncul", Toast.LENGTH_SHORT);
+//        badgeToast.show();
     }
 
     private void showDislikeBadge() {
@@ -172,8 +172,8 @@ public class HomeFragment extends Fragment {
 
         // Tampilkan toast sementara
         if (badgeToast != null) badgeToast.cancel();
-        badgeToast = Toast.makeText(requireContext(), "Dislike badge muncul", Toast.LENGTH_SHORT);
-        badgeToast.show();
+//        badgeToast = Toast.makeText(requireContext(), "Dislike badge muncul", Toast.LENGTH_SHORT);
+//        badgeToast.show();
     }
     private void setupActionButtons() {
         binding.btnLike.setOnClickListener(v -> {
@@ -185,7 +185,7 @@ public class HomeFragment extends Fragment {
         });
 
         binding.btnInfo.setOnClickListener(v -> {
-            showToast("Show pet info");
+//            showToast("Show pet info");
         });
     }
 
@@ -225,7 +225,7 @@ public class HomeFragment extends Fragment {
                 .withEndAction(() -> {
                     // Batalkan toast saat animasi selesai
                     if (badgeToast != null) {
-                        badgeToast.cancel();
+//                        badgeToast.cancel();
                     }
                     binding.ivLikeBadge.setVisibility(View.GONE);
                     binding.ivDislikeBadge.setVisibility(View.GONE);
@@ -252,7 +252,7 @@ public class HomeFragment extends Fragment {
             currentPetIndex++;
         } else {
             currentPetIndex = 0;
-            Toast.makeText(requireContext(), "Starting over with pets", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireContext(), "Starting over with pets", Toast.LENGTH_SHORT).show();
         }
         updateCurrentPet();
     }
@@ -292,7 +292,7 @@ public class HomeFragment extends Fragment {
             popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, x, y);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(requireContext(), "Error showing pet dropdown", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireContext(), "Error showing pet dropdown", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -313,7 +313,7 @@ public class HomeFragment extends Fragment {
             popupWindow.showAtLocation(anchorView, Gravity.TOP | Gravity.START, x, y);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(requireContext(), "Error showing filter popup", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireContext(), "Error showing filter popup", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -359,16 +359,16 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private void showToast(String message) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-        Log.d("SWIPE_DEBUG", message);
-    }
+//    private void showToast(String message) {
+//        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+//        Log.d("SWIPE_DEBUG", message);
+//    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (badgeToast != null) {
-            badgeToast.cancel();
+//            badgeToast.cancel();
         }
         binding = null;
     }

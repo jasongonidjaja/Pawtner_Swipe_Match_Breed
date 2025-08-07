@@ -14,9 +14,9 @@
         android:text="Chat"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/avenirltproblack"
         android:gravity="center"
-        android:textColor="#1D1B1B"
+        android:textColor="@color/darkblue_paw"
         android:paddingTop="5dp"
         android:paddingBottom="5dp" />
 
@@ -27,20 +27,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="13dp" />
 
-    <!--    <androidx.appcompat.widget.SearchView-->
-    <!--        android:id="@+id/searchView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="0dp"-->
-    <!--        android:background="@drawable/search_background"-->
-    <!--        android:iconifiedByDefault="false"-->
-    <!--        app:queryHint="Search Chat"-->
-    <!--        app:defaultQueryHint="Search Chat"-->
-    <!--        android:textColorHint="#808080"-->
-    <!--        app:searchHintIcon="@null"-->
-    <!--        app:searchIcon="@drawable/ic_search"-->
-    <!--        android:inputType="text" />-->
-
+    <!-- Search -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
@@ -48,7 +35,7 @@
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/search_background"
         android:iconifiedByDefault="false"
-        app:queryHint="Search chat" />
+        android:paddingLeft="6dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
